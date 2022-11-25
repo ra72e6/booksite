@@ -4,8 +4,8 @@ import React, { useContext } from 'react';
 import Layout from '../components/Layout';
 import { Store } from '../utils/Store';
 import { useRouter } from 'next/router';
-
 import dynamic from 'next/dynamic';
+import { XCircleIcon } from '@heroicons/react/outline';
 
 function CartScreen() {
   const router = useRouter();
@@ -46,17 +46,17 @@ function CartScreen() {
                 {cartItems.map((item) => (
                   <tr key={item.slug} className="border-b">
                     <td>
-                      <Link href={`/product/${item.slug}`}>
-                        <a className="flex items-center">
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            width={50}
-                            height={50}
-                          ></Image>
-                          &nbsp;
-                          {item.name}
-                        </a>
+                      <Link
+                        href={`/product/${item.slug}`}
+                        className="flex items-center"
+                      >
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          width={50}
+                          height={50}
+                        ></Image>
+                        {item.name}
                       </Link>
                     </td>
 
@@ -90,7 +90,9 @@ function CartScreen() {
                     </td>
 
                     <td className="p-5 text-center">
-                      <button onClick={() => removeItemHandler(item)}></button>
+                      <button onClick={() => removeItemHandler(item)}>
+                        <XCircleIcon className="h-5 w-5"></XCircleIcon>
+                      </button>
                     </td>
                   </tr>
                 ))}
