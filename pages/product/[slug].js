@@ -13,13 +13,10 @@ export default function ProductScreen() {
   const router = useRouter();
   const product = data.products.find((x) => x.slug === slug);
 
-  if (!product) {
-    return <div>상품을 찾을 수 없습니다.</div>;
-  }
-
   const addToCartHandler = () => {
     const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
+
     if (product.countInStock < quantity) {
       alert('Sorry. Product is out of stock');
       return;
@@ -27,6 +24,10 @@ export default function ProductScreen() {
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
     router.push('/cart');
   };
+
+  if (!product) {
+    return <div>상품을 찾을 수 없습니다.</div>;
+  }
 
   return (
     <Layout title={product.name}>
