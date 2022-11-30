@@ -8,26 +8,28 @@ import { Store } from '../../utils/Store';
 
 export default function ProductScreen() {
   const { state, dispatch } = useContext(Store);
+  const router = useRouter();
+
   const { query } = useRouter();
   const { slug } = query;
-  const router = useRouter();
   const product = data.products.find((x) => x.slug === slug);
+
+  if (!product) {
+    return <div>Product Not Found. 그런 상품이 없습니다.</div>;
+  }
 
   const addToCartHandler = () => {
     const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
 
     if (product.countInStock < quantity) {
-      alert('Sorry. Product is out of stock');
+      alert('Sorry. 재고가 부족합니다.');
       return;
     }
+
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
     router.push('/cart');
   };
-
-  if (!product) {
-    return <Layout title="Product Not Found">Product Not Found</Layout>;
-  }
 
   return (
     <Layout title={product.name}>
@@ -44,6 +46,7 @@ export default function ProductScreen() {
             layout="responsive"
           ></Image>
         </div>
+
         <div>
           <ul>
             <li>
@@ -52,7 +55,7 @@ export default function ProductScreen() {
             <li>Category: {product.category}</li>
             <li>Brand: {product.brand}</li>
             <li>
-              {product.rating} of {product.numReviews} reviews
+              {product.rating} of {product.numReviews}
             </li>
             <li>Description: {product.description}</li>
           </ul>
@@ -64,17 +67,15 @@ export default function ProductScreen() {
               <div>Price</div>
               <div>${product.price}</div>
             </div>
-
             <div className="mb-2 flex justify-between">
               <div>Status</div>
               <div>{product.countInStock > 0 ? 'In stock' : 'Unavailable'}</div>
             </div>
-
             <button
               className="primary-button w-full"
               onClick={addToCartHandler}
             >
-              장바구니에 넣기
+              카트에 넣기
             </button>
           </div>
         </div>
