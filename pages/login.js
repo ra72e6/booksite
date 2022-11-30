@@ -45,17 +45,16 @@ export default function LoginScreen() {
         className="mx-auto max-w-screen-md"
         onSubmit={handleSubmit(submitHandler)}
       >
-        <h1 className="mb-4 text-xl">로그인 </h1>
+        <h1 className="mb-4 text-xl">Login </h1>
         <div className="mb-4">
-          <label htmlFor="email">이메일</label>
-
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             {...register('email', {
               required: 'Please enter email',
               pattern: {
                 value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
-                message: 'Please enter valid email',
+                message: 'Please enter vaild email',
               },
             })}
             className="w-full"
@@ -66,12 +65,11 @@ export default function LoginScreen() {
             <div className="text-red-500">{errors.email.message}</div>
           )}
         </div>
-
         <div className="mb-4">
-          <label htmlFor="password">패스워드</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
-            {...register('password', {
+            {...register('Password', {
               required: 'Please enter password',
               minLength: { value: 3, message: 'password is more than 3 chars' },
             })}
@@ -79,19 +77,16 @@ export default function LoginScreen() {
             id="password"
             autoFocus
           />
-
           {errors.password && (
-            <div className="text-red-500 ">{errors.password.message}</div>
+            <div className="text-red-500">{errors.password.message}</div>
           )}
         </div>
-
         <div className="mb-4">
-          <button className="primary-button">로그인</button>
+          <button className="primary-button">Login</button>
         </div>
-
         <div className="mb-4">
           Don&apos;t have an account? &nbsp;
-          <Link href="register">가입</Link>
+          <Link href="register">Register</Link>
         </div>
       </form>
     </Layout>

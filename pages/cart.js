@@ -58,7 +58,6 @@ function CartScreen() {
                         </a>
                       </Link>
                     </td>
-
                     <td className="p-5 text-right">
                       <select
                         value={item.quantity}
@@ -107,10 +106,9 @@ function CartScreen() {
                   {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
                 </div>
               </li>
-
               <li>
                 <button
-                  onClick={() => router.push('/shipping')}
+                  onClick={() => router.push('login?redirect=/shipping')}
                   className="primary-button w-full"
                 >
                   Check Out

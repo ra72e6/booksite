@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
+
 const connection = {};
+
 async function connect() {
   if (connection.isConnected) {
     console.log('already connected');
@@ -17,6 +19,7 @@ async function connect() {
   console.log('new connection');
   connection.isConnected = db.connections[0].readyState;
 }
+
 async function disconnect() {
   if (connection.isConnected) {
     if (process.env.NODE_ENV === 'production') {

@@ -26,7 +26,7 @@ export default function ProductScreen() {
   };
 
   if (!product) {
-    return <div>상품을 찾을 수 없습니다.</div>;
+    return <Layout title="Product Not Found">Product Not Found</Layout>;
   }
 
   return (

@@ -1,5 +1,4 @@
 import bcrypt from 'bcryptjs';
-
 const data = {
   users: [
     {
@@ -15,7 +14,6 @@ const data = {
       isAdmin: false,
     },
   ],
-
   products: [
     {
       name: '칵테일, 러브, 좀비',

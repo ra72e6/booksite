@@ -9,7 +9,6 @@ const initialState = {
 };
 
 function reducer(state, action) {
-  // reducer 함수 생성
   switch (action.type) {
     case 'CART_ADD_ITEM': {
       const newItem = action.payload;
