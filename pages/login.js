@@ -125,7 +125,7 @@ export default function LoginScreen() {
           </button>
           <div>
             계정이 없으면 등록하세요. &nbsp;-&nbsp;
-            <Link href="register">Register</Link>
+            <Link href={`/register?redirect=${redirect || '/'}`}>Register</Link>
           </div>
         </div>
 
